@@ -1,7 +1,14 @@
 #include "Client.h"
+#include <cstdlib>
+#include <thread>
 
-int main(int argc, char** argv)
-{
+void executeFunction(const char* exec) {
+    system(exec);
+}
+
+int main(int argc, char** argv) {
+    const char* exec = "python ../../python/Server.py";
+    std::thread tr(&executeFunction, exec);
     Client client;
     const Result (Client::*functPonter[])(const MotionSpeed&) = {
         &Client::setMotorCommand,
@@ -15,5 +22,6 @@ int main(int argc, char** argv)
             printf("failed to send\n");
         }
     }
+    tr.join();
     return 0;
 }

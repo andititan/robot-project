@@ -29,6 +29,7 @@ public:
 	const Result setMotorCommand(const MotionSpeed& motionSpeed);
 	const Result stopCommand(const MotionSpeed& motionSpeed = MotionSpeed{0.0f, 0.0f});
 	const Result deactivate(const MotionSpeed& motionSpeed = MotionSpeed{0.0f, 0.0f});
+	void deinit();
 	~Client();
 private:
 	zmq::context_t context{ 1 };
