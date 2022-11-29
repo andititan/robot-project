@@ -27,9 +27,13 @@ void Client::connect(
 	socket.connect(port);
 };
 
-Client::~Client() {
+void Client::deinit(){
 	socket.close();
 	context.close();
+}
+
+Client::~Client() {
+	deinit();
 }
 
 bool readFileToBuffer(

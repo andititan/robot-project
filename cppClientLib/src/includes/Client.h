@@ -25,12 +25,10 @@ public:
 	Client(Client&& other) = delete;
 	Client operator=(Client& other) = delete;
 	Client& operator=(Client&& other) = delete;
-	void connect(
-		const std::string& port
-	);
+	void connect(const std::string& port);
 	const Result setMotorCommand(const MotionSpeed& motionSpeed);
-	const Result stopCommand(const MotionSpeed& motionSpeed);
-	const Result deactivate(const MotionSpeed& motionSpeed);
+	const Result stopCommand(const MotionSpeed& motionSpeed = MotionSpeed{0.0f, 0.0f});
+	const Result deactivate(const MotionSpeed& motionSpeed = MotionSpeed{0.0f, 0.0f});
 	~Client();
 private:
 	zmq::context_t context{ 1 };
