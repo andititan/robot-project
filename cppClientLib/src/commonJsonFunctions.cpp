@@ -50,10 +50,8 @@ const std::string JsonFunction::prepareHTTPReqPost(HTTPReq request, int sizeToSe
 	//explicitly create a json file, but soon or later imma remove this
 	nlohmann::json json;
 	json["Post"] = sizeToSendInBytes;
-	// std::cout << json.dump();
 	return json.dump();
 }
-
 
 const int JsonFunction::getReqAndSize(
 	const std::string& msg,

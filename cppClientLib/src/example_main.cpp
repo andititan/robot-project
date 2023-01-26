@@ -7,22 +7,17 @@ int main(int argc, char** argv)
 	if (argc == 1) {
 		printf("no argvs passed\n");
 		Client client;
-		const Result (Client::*functPonter[])(const MotionSpeed&) = {
-			&Client::backwardCommand,
-			&Client::forewardCommand,
-			&Client::leftCommand,
-			&Client::rightCommand,
-			&Client::stopCommand,
-			&Client::setMotorCommand,
-			&Client::deactivate
-		};
 		client.connect("tcp://127.0.0.1:5555");
+		const MotionSpeed speed(1.0f, 1.0f);
 		for (int i = 0; i < 7; i++) {
-			const Result res = (client.*functPonter[i])(MotionSpeed{0.5, 1.0f});
+			const Result res = client.setMotorCommand(speed);
 			if (res == Result::FailedToSend) {
 				printf("failed to send\n");
+				break;
 			}
 		}
+		client.stopCommand();
+    	client.disconnect();
 		return 0;
 	}
 	std::string arg = argv[1];
