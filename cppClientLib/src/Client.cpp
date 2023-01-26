@@ -98,12 +98,14 @@ const Result Client::setMotorCommand(const MotionSpeed& motionSpeed) {
 	return sendCommand("SetMotors", motionSpeed);
 }
 
-const Result Client::stopCommand(const MotionSpeed& motionSpeed) {
+const Result Client::stopCommand() {
+	static MotionSpeed motionSpeed(0.0f, 0.0f);
 	return sendCommand("Stop", motionSpeed);
 }
 
-const Result Client::deactivate(const MotionSpeed& motionSpeed) {
-	return sendCommand("Deactivate", motionSpeed);
+const Result Client::disconnect() {
+	static MotionSpeed motionSpeed(0.0f, 0.0f);
+	return sendCommand("Disconnect", motionSpeed);
 }
 
 const bool Client::sendHTTPFlag(

@@ -1,12 +1,17 @@
-#include "Json.h"
+#include "commonJsonFunctions.h"
 #include "json.hpp"
 
 MotionSpeed::MotionSpeed(
-	const float primary,
-	const float secondaryMotion
+	const float leftMotor,
+	const float rightMotor
 ) {
-	this->leftMotor = primary;
-	this->rightMotor = secondaryMotion;
+	this->leftMotor = leftMotor;
+	this->rightMotor = rightMotor;
+}
+
+MotionSpeed::MotionSpeed() {
+	this->leftMotor = 0.0f;
+	this->rightMotor = 0.0f;
 }
 
 const bool MotionSpeed::isSingleMotion() const {
@@ -25,14 +30,6 @@ const std::string JsonFunction::createJsonAsString(
 	return json.dump();
 }
 
-const std::string JsonFunction::prepareHTTPReqPost(HTTPReq request, int sizeToSendInBytes) {
-	//explicitly create a json file, but soon or later imma remove this
-	nlohmann::json json;
-	json["Post"] = sizeToSendInBytes;
-	// std::cout << json.dump();
-	return json.dump();
-}
-
 const bool JsonFunction::getJsonRequest(
 	const std::string& msg,
 	JsonRequests& req
@@ -43,11 +40,20 @@ const bool JsonFunction::getJsonRequest(
 	}
 
 	nlohmann::json json = nlohmann::json::parse(msg);
-	if(json.contains("Deactivate")) {
+	if(json.contains("Disconnect")) {
 		return false;
 	}
 	return false;
 }
+
+const std::string JsonFunction::prepareHTTPReqPost(HTTPReq request, int sizeToSendInBytes) {
+	//explicitly create a json file, but soon or later imma remove this
+	nlohmann::json json;
+	json["Post"] = sizeToSendInBytes;
+	// std::cout << json.dump();
+	return json.dump();
+}
+
 
 const int JsonFunction::getReqAndSize(
 	const std::string& msg,

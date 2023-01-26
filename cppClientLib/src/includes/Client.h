@@ -1,14 +1,14 @@
 #pragma once
 #include "../cppzmq/zmq.hpp"
 #include "depend.h"
-#include "Json.h"
+#include "commonJsonFunctions.h"
 
 class Client
 {
 	const bool splitAndSendPackage(
 		std::vector<int32_t>& package
 	);
-	const bool Client::sendHTTPFlag(
+	const bool sendHTTPFlag(
 		const HTTPReq request,
 		int sizeInBytes
 	);
@@ -27,8 +27,8 @@ public:
 	Client& operator=(Client&& other) = delete;
 	void connect(const std::string& port);
 	const Result setMotorCommand(const MotionSpeed& motionSpeed);
-	const Result stopCommand(const MotionSpeed& motionSpeed = MotionSpeed{0.0f, 0.0f});
-	const Result deactivate(const MotionSpeed& motionSpeed = MotionSpeed{0.0f, 0.0f});
+	const Result stopCommand();
+	const Result disconnect();
 	void deinit();
 	~Client();
 private:

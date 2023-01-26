@@ -24,7 +24,7 @@ set(LIB_SOURCES
     src/dpd/depend.h
     src/dpd/stbi_write.h
     #json creating
-    src/Json.cpp
+    src/commonJsonFunctions.cpp
 )
 
 set(STAND_ALONE FALSE)

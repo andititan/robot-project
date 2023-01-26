@@ -9,7 +9,7 @@ enum class JsonRequests : uint8_t
 	Foreward,
 	Backward,
 	Stop,
-	Deactivate
+	Disconnect
 };
 
 enum class HTTPReq : uint8_t
@@ -32,9 +32,10 @@ const int PackageSizeInBytes = PackageSize*sizeof(int);
 struct MotionSpeed
 {
 	MotionSpeed(
-		const float primary,
-		const float secondaryMotion = 0.0f
+		const float leftMotor,
+		const float rightMotor = 0.0f
 	);
+	MotionSpeed();
 	const bool isSingleMotion() const;
 	float leftMotor;
 	float rightMotor;

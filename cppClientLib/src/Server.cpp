@@ -1,5 +1,5 @@
 #include "Server.h"
-#include "Json.h"
+#include "commonJsonFunctions.h"
 
 Server::Server(
 	Server&& other
@@ -49,7 +49,7 @@ bool Server::catchPostRequest(
 
 const bool Server::listenForCommand() {
 	zmq::message_t msg;
-	JsonRequests request = JsonRequests::Deactivate;
+	JsonRequests request = JsonRequests::Disconnect;
 	bool res = socket.recv(&msg);
 	if (res == false) {
 		printf("could not recieve from client\n");

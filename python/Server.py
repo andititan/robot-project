@@ -30,7 +30,7 @@ def listenForCommand():
     print(f"Received request: {message}")
     socket.send(b"recieved function")
     res = True
-    if("Deactivate" in message.keys()):
+    if("Disconnect" in message.keys()):
         res = False
     return (message, res)
 
@@ -40,7 +40,7 @@ def main():
         keysList = list(message.keys())
         key = keysList[0]
         val = message[key]
-        if key == None or key == "Deactivate":
+        if key == None or key == "Disconnect":
             break
         kvp[key](val)
     socket.close()
