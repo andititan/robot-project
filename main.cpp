@@ -16,6 +16,7 @@ int main(int argc, char** argv) {
         const Result res = client.setMotorCommand(speed);
         if (res == Result::FailedToSend) {
             printf("failed to send\n");
+            break;
         }
     }
     client.stopCommand();

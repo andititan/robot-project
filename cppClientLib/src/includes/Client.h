@@ -19,6 +19,7 @@ class Client
 	const Result sendBuffer(
 		const std::string& filename
 	);
+	void deinit();
 public:
 	Client() = default;
 	Client(Client& other) = delete;
@@ -29,7 +30,6 @@ public:
 	const Result setMotorCommand(const MotionSpeed& motionSpeed);
 	const Result stopCommand();
 	const Result disconnect();
-	void deinit();
 	~Client();
 private:
 	zmq::context_t context{ 1 };
