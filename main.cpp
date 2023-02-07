@@ -28,6 +28,9 @@ private:
 int main(int argc, char** argv) {
     bool startPython = false;
     int opt = 0;
+#ifdef _WIN32
+    startPython = true;
+#else
     while ((opt = getopt(argc, argv, "h:s")) != -1) {
         switch (opt) {
             case 'h':
@@ -53,7 +56,7 @@ int main(int argc, char** argv) {
                 exit(-1);
         }
     }
-
+#endif
     PythonScript ps(startPython);
     const MotionSpeed speed(1.0f, 1.0f);
     Client client;
