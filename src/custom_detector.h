@@ -5,8 +5,8 @@
 
 enum color {red, green, blue, black};
 
-struct custom_detector{
-    custom_detector() = default;
+struct Detector{
+    Detector() = default;
 
     cv::Moments detect(cv::VideoCapture &video);
     void nextColor();

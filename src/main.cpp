@@ -15,7 +15,7 @@ int main(){
         return -1;
     }
     
-    custom_robot robot;
+    Robot robot;
     robot.run(video);
 
     return 0;

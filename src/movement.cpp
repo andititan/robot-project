@@ -10,36 +10,36 @@ using json = nlohmann::json;
 using namespace std;
 using namespace cv;
 
-void movement::left(){ 
+void Movement::left(){ 
     ms = MotionSpeed{-motorSpeed,-motorSpeed};
     client.setMotorCommand(ms);
     sleep(j["sleepTime"]);
     stop();
 }
 
-void movement::right(){
+void Movement::right(){
     ms = MotionSpeed{motorSpeed, motorSpeed};
     client.setMotorCommand(ms);
     sleep(j["sleepTime"]);
     stop();
 }
 
-void movement::forward(){
+void Movement::forward(){
     ms = MotionSpeed{motorSpeed,-motorSpeed};
     client.setMotorCommand(ms);
     sleep(j["sleepTime"]);
     stop();
 }
 
-void movement::stop(){
+void Movement::stop(){
     client.stopCommand();
 }
 
-void movement::disconnect() {
+void Movement::disconnect() {
     client.disconnect();
 }
 
-int movement::direction(const Moments &m){
+int Movement::direction(const Moments &m){
     //getting center of the object
     Point center(m.m10/m.m00, m.m01/m.m00);
 

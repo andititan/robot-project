@@ -7,8 +7,8 @@
 
 using json = nlohmann::json;
 
-struct movement{
-    movement(){
+struct Movement{
+    Movement(){
         client.connect("tcp://127.0.0.1:5555");
         std::ifstream ifs("../src/values.json");
         j = json::parse(ifs);

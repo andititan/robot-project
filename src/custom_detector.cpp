@@ -7,7 +7,7 @@ using namespace std;
 using namespace cv;
 
 //getting a frame and editing it, so we can get the object from it
-Moments custom_detector::detect(VideoCapture &video){
+Moments Detector::detect(VideoCapture &video){
     //read frame and save it in "frame"
     Mat frame;
     video.read(frame);
@@ -45,7 +45,7 @@ Moments custom_detector::detect(VideoCapture &video){
 }
 
 //going trough every color, when color is set to black we end the program
-void custom_detector::nextColor(){
+void Detector::nextColor(){
     if(current_color == red){
         current_color = blue;
         cout << "Looking for blue" << endl;
@@ -60,6 +60,6 @@ void custom_detector::nextColor(){
     }
 }
 
-color custom_detector::getColor(){
+color Detector::getColor(){
     return current_color;
 }

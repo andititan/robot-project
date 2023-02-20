@@ -4,11 +4,11 @@
 #include "custom_detector.h"
 #include "movement.h"
 
-struct custom_robot{
-    custom_robot() = default;
+struct Robot{
+    Robot() = default;
 
     void run(cv::VideoCapture &video);
 private:
-    custom_detector detector;
-    movement move;
+    Detector detector;
+    Movement move;
 };

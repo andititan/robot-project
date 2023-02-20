@@ -6,7 +6,7 @@
 using namespace std;
 using namespace cv;
 
-void custom_robot::run(VideoCapture &video){
+void Robot::run(VideoCapture &video){
     while(detector.getColor() != 3){
         if(move.direction(detector.detect(video)) == 0){
             detector.nextColor();
