@@ -7,11 +7,13 @@ using namespace std;
 using namespace cv;
 
 void Robot::run(VideoCapture &video){
-    while(detector.getColor() != 3){
+    robot_logger->info("Starting program");
+    while(detector.getColor() != black){
         if(move.direction(detector.detect(video)) == 0){
             detector.nextColor();
         }
     }
+    robot_logger->info("Ending program");
     move.stop();
     move.disconnect();
 }

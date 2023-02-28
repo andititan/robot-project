@@ -46,21 +46,25 @@ int Movement::direction(const Moments &m){
     //m.m00 is the object`s area
     if(m.m00 == 0){
         left();
-        cout << "           No object" << endl;
+        //logger_output("No object");
         return 1;
     }else if(m.m00 > j["maxArea"]){
-        cout << "               Arrived next to object" << endl;
+        //logger_output("Arrived next to object");
         return 0;
     }else if(abs(center.x - (640/2)) <= 90){
-        cout << "               Centered" << endl;
+        //logger_output("Centered");
         forward();
         return 1;
     }else if(center.x > (640/2)){
-        cout << "           Object on right" << endl;
+        //logger_output("Object on right");
         right();
         return 1;
     }
-    cout << "            Object on left" << endl;
+    //logger_output("Object on left");
     left();
     return 1;
-}   
+}
+
+void Movement::logger_output(string text){
+    movement_logger->info(text);
+}

@@ -25,7 +25,7 @@ def Stop(arg):
 
 kvp = {
     "SetMotors":SetMotor,
-    "Stop":Stop
+	"Stop":Stop
 }
 
 context = zmq.Context()
@@ -50,7 +50,7 @@ def main():
         print(key)
         val = message[key]
         print(val)
-        if key == None or key == "Deactivate":
+        if key == None or key == "Disconnect":
             break
         func = kvp[key]
         print(func, kvp)

@@ -6,6 +6,10 @@
 using namespace std;
 using namespace cv;
 
+void Detector::logger_output(string text){
+    detector_logger->info(text);
+}
+
 //getting a frame and editing it, so we can get the object from it
 Moments Detector::detect(VideoCapture &video){
     //read frame and save it in "frame"
@@ -48,14 +52,15 @@ Moments Detector::detect(VideoCapture &video){
 void Detector::nextColor(){
     if(current_color == red){
         current_color = blue;
-        cout << "Looking for blue" << endl;
+        logger_output("Red object found, looking for blue");
     }else if(current_color == blue){
         cout << "BLUE!!!" << endl;
         //current_color = green;
-
+        logger_output("Blue object found, looking for green");
         //Test
         current_color = black;
     }else{
+        logger_output("Green object found, done");
         current_color = black;
     }
 }

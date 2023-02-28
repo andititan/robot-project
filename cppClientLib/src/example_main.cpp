@@ -24,7 +24,6 @@ int main(int argc, char** argv) {
 	if (arg == "--client") {
 		Client client;
 		client.connect("tcp://127.0.0.1:5555");
-		client.sendBuffer("something.txt");
 	} else if (arg == "--server") {
 		Server server;
 		server.bind("tcp://127.0.0.1:5555");

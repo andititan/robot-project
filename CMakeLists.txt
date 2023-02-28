@@ -3,10 +3,12 @@ project( robotProject )
 
 find_package( OpenCV REQUIRED )
 find_package(nlohmann_json REQUIRED)
+find_package(spdlog REQUIRED)
 
 add_subdirectory(cppClientLib build)
 
 set(SOURCES
+	#src/spdlog_test.cpp
     src/main.cpp
     src/custom_robot.cpp
     src/custom_detector.cpp 
@@ -26,3 +28,4 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
     )
 
 target_link_libraries(robotProject PUBLIC nlohmann_json::nlohmann_json)
+target_link_libraries(robotProject PUBLIC spdlog::spdlog_header_only)

@@ -10,10 +10,11 @@ void executeFunction(const char* exec) {
 struct PythonScript {
     PythonScript(const bool usePython) {
         this->usePython = usePython;
-        const char* exec = "python ../../python/Server.py";
+        const char* exec = "python ../python/Server.py";
         if(usePython) {
             tr = std::thread(&executeFunction, exec);
         }
+	printf("execute");
     }
     ~PythonScript() {
         if(usePython) {
@@ -59,6 +60,7 @@ int main(int argc, char** argv) {
 #endif
     PythonScript ps(startPython);
     const MotionSpeed speed(1.0f, 1.0f);
+    printf("client Create");
     Client client;
     client.connect("tcp://127.0.0.1:5555");
     for (int i = 0; i < 7; i++) {
@@ -68,7 +70,9 @@ int main(int argc, char** argv) {
             break;
         }
     }
+    printf("before stop");
     client.stopCommand();
     client.disconnect();
+    printf("disconnect");
     return 0;
 }
