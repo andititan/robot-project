@@ -14,8 +14,7 @@ struct Detector{
     cv::Moments detect(cv::VideoCapture &video);
     void nextColor();
     color getColor();
-    void logger_output(std::string);
 private:
-    color current_color = blue;
+    color current_color = red;
     std::shared_ptr<spdlog::logger> detector_logger;
 };

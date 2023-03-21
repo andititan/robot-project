@@ -6,10 +6,6 @@
 using namespace std;
 using namespace cv;
 
-void Detector::logger_output(string text){
-    detector_logger->info(text);
-}
-
 //getting a frame and editing it, so we can get the object from it
 Moments Detector::detect(VideoCapture &video){
     //read frame and save it in "frame"
@@ -28,13 +24,13 @@ Moments Detector::detect(VideoCapture &video){
     if(current_color == red){
         Mat lower_mask;
         Mat upper_mask;
-        inRange(frame_HSV, Scalar(0, 100, 100), Scalar(10, 255, 255), lower_mask);
-        inRange(frame_HSV, Scalar(160, 100, 100), Scalar(179,255,255), upper_mask);
+        inRange(frame_HSV, Scalar(0, 100, 50), Scalar(10, 255, 255), lower_mask);
+        inRange(frame_HSV, Scalar(160, 100, 50), Scalar(179,255,255), upper_mask);
         full_mask = lower_mask + upper_mask;
     }else if(current_color == blue){
         inRange(frame_HSV, Scalar(90, 100, 100), Scalar(135, 255, 255), full_mask);
     }else{
-        inRange(frame_HSV, Scalar(30, 100, 100), Scalar(75, 255, 255), full_mask);
+        inRange(frame_HSV, Scalar(30, 60, 40), Scalar(75, 255, 255), full_mask);
     }
 
     //using morphology to make a better looking object
@@ -44,7 +40,8 @@ Moments Detector::detect(VideoCapture &video){
     //moment detection for object
     Moments m = moments(full_mask, true);
 
-    cout << "             Area:" << m.m00 << endl;
+    detector_logger->info(current_color);
+    detector_logger->info(m.m00);
     return m;
 }
 
@@ -52,15 +49,12 @@ Moments Detector::detect(VideoCapture &video){
 void Detector::nextColor(){
     if(current_color == red){
         current_color = blue;
-        logger_output("Red object found, looking for blue");
+        detector_logger->info("Red object found, looking for blue");
     }else if(current_color == blue){
-        cout << "BLUE!!!" << endl;
-        //current_color = green;
-        logger_output("Blue object found, looking for green");
-        //Test
-        current_color = black;
+        current_color = green;
+        detector_logger->info("Blue object found, looking for green");
     }else{
-        logger_output("Green object found, done");
+        detector_logger->info("Green object found, done");
         current_color = black;
     }
 }

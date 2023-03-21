@@ -4,11 +4,12 @@
 #include <unistd.h>
 #include "custom_robot.h"
 #include "serverStarter.h"
+
 using namespace std;
 using namespace cv;
 
 int main(){
-    PythonScript ps(true);
+    ServerStarter ps(true);
     VideoCapture video;
     video.open(0, CAP_V4L2);
     if (!video.isOpened()) {

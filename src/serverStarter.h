@@ -5,8 +5,8 @@ void executeFunction(const char* exec) {
     system(exec);
 }
 
-struct PythonScript {
-    PythonScript(const bool usePython) {
+struct ServerStarter {
+    ServerStarter(const bool usePython) {
         this->usePython = usePython;
         const char* exec = "python ../python/Server.py";
         if(usePython) {
@@ -14,7 +14,7 @@ struct PythonScript {
         }
         printf("execute");
     }
-    ~PythonScript() {
+    ~ServerStarter() {
         if(usePython) {
             tr.join();
         }
